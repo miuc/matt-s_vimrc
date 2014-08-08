@@ -1,27 +1,21 @@
-set nu
-fun! MySys()
-   return "$1"
-endfun
-try
-    if MySys() == "windows"
-      set undodir=R:\Temp
-    else
-      set undodir=R:\Temp
-    endif
-   
-    set undofile
-catch
-endtry
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nu
+
+" open mouse
+" set mouse=a
 
 " Set chinese code
 
-set fileencoding=utf-8
-let &termencoding=&encoding
-set fileencodings=utf-8,chinese,latin-1
-set fileencoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
+"set fileencoding=utf-8
+"let &termencoding=&encoding
+"set fileencodings=utf-8,chinese,latin-1
+"set fileencoding=utf-8
 
 " Set helplang
 set helplang=cn
@@ -44,8 +38,7 @@ let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
-
-map <leader>e :e! ~/_vimrc<cr>
+map <leader>e :e! ~/.vimrc<cr>
 map <leader>d :%s /\n/,/g<cr>
 map <leader>y ggVG"+y
 
@@ -57,9 +50,7 @@ map <leader>y ggVG"+y
 
 " clear the show word
 
-
 " Set start_size by ctq
-set lines=80 columns=108
 
 " Set tab_edit
 " Use tab to switch
@@ -71,7 +62,7 @@ map <S-TAB> <ESC> :tabprevious<CR>
 
 
 " Set 7 lines to the curors - when moving vertical..
-set so=7
+" set so=7
 
 set wildmenu "Turn on WiLd menu
 
@@ -108,18 +99,15 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax enable "Enable syntax hl
+
+syntax enable                                                                                                                 
+syntax on
+colorscheme zellner
+
 
 " Set font according to system
-if MySys() == "mac"
-  set gfn=Menlo:h14
-  set shell=/bin/bash
-elseif MySys() == "windows"
-  set gfn=Bitstream\ Vera\ Sans\ Mono:h10
-elseif MySys() == "linux"
-  set gfn=Monospace\ 10
-  set shell=/bin/bash
-endif
+set gfn=Monospace\ 10
+set shell=/bin/bash
 
 "try
 "    lang en_US
@@ -127,8 +115,6 @@ endif
 "endtry
 
 set ffs=unix,dos,mac "Default file types
-
-colo evening
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -371,3 +357,41 @@ func! PYSET()
     map <C-F9> <esc><F9>
     set expandtab
 endfunc
+
+
+""""""""""""""""""""""""""""""
+" => Tlist
+""""""""""""""""""""""""""""""
+
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+
+let Tlist_Auto_Open = 1
+let Tlist_File_Fold_Auto_Close = 1
+
+
+
+""""""""""""""""""""""""""""""
+" => Python Automatic fill
+""""""""""""""""""""""""""""""
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+set foldmethod=syntax
+
+"set foldlevelstart=99
+
+""""""""""""""""""""""""""""""
+" => Explorer -> netrw
+""""""""""""""""""""""""""""""
+let g:netrw_winsize = 30
+nmap <silent> <leader>f :Sexplore!<cr>
+
+
+let g:nManagerWindowLayout = "FileExplorer,TagList"
+let g:winManagerWidth = 34
+let g:defaultExplorer = 0
+nmap <C-W><C-F> :FirstExplorerWindow<cr>
+nmap <C-W><C-B> :BottomExplorerWindow<cr>
+nmap <silent> <leader>m :WMToggle<cr>
+
+
