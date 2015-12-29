@@ -102,7 +102,7 @@ set tm=500
 
 syntax enable                                                                                                                 
 syntax on
-colorscheme zellner
+colorscheme evening
 
 
 " Set font according to system
@@ -394,4 +394,76 @@ nmap <C-W><C-F> :FirstExplorerWindow<cr>
 nmap <C-W><C-B> :BottomExplorerWindow<cr>
 nmap <silent> <leader>m :WMToggle<cr>
 
+
+""""""""""""""""""""""""""""""
+" => bundle
+""""""""""""""""""""""""""""""
+set nocompatible               " be iMproved
+filetype off                   " required!
+ 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+ 
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+ 
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+" non github repos
+Bundle 'git://git.wincent.com/command-t.git'
+" ...
+ 
+filetype plugin indent on     " required!
+"
+" Brief help  -- 此处后面都是vundle的使用命令
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+
+
+""""""""""""""""""""""""""""""
+" => bundle plugins
+""""""""""""""""""""""""""""""
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'bling/vim-airline'
+"Plugin 'scrooloose/syntastic'
+Plugin 'godlygeek/csapprox'
+Plugin 'nanotech/jellybeans.vim'
+
+""""""""""""""""""""""""""""""
+" => vim-airline
+""""""""""""""""""""""""""""""
+let g:airline_section_b = '%{strftime("%c")}'
+
+""""""""""""""""""""""""""""""
+" => syntastic
+""""""""""""""""""""""""""""""
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+
+""""""""""""""""""""""""""""""
+" => jellybeans.vim
+""""""""""""""""""""""""""""""
+colorscheme jellybeans
 
