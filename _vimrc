@@ -353,7 +353,11 @@ func! CPPSET()
 endfunc
 
 func! PYSET()
-    map <F9> :w!<cr>:!start cmd /c "python % && pause \|\| pause"<cr><cr><C-L>
+    if has('win32')
+        map <F9> :w!<cr>:!start cmd /c "python % && pause \|\| pause"<cr><cr><C-L>
+    else
+        map <F9> :w!<cr>:!python %<cr>
+    endif
     map <C-F9> <esc><F9>
     set expandtab
 endfunc
@@ -443,6 +447,8 @@ Plugin 'bling/vim-airline'
 "Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/csapprox'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'mileszs/ack.vim'
 
 """"""""""""""""""""""""""""""
 " => vim-airline
@@ -465,5 +471,15 @@ let g:airline_section_b = '%{strftime("%c")}'
 """"""""""""""""""""""""""""""
 " => jellybeans.vim
 """"""""""""""""""""""""""""""
+let g:jellybeans_overrides = {
+            \    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
+            \              'ctermfg': 'Black', 'ctermbg': 'Yellow',
+            \              'attr': 'bold' },
+            \}
 colorscheme jellybeans
 
+
+""""""""""""""""""""""""""""""
+" => ack.vim - ag
+""""""""""""""""""""""""""""""
+let g:ackprg = 'ag --nogroup --nocolor --column'
