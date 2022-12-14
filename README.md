@@ -1,4 +1,4 @@
 matt-s_vimrc
 ============
 
-my vimdc file, used in linux/windows.
+my vimrc file, used in linux/windows.
